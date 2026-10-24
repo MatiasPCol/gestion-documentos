@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Verificación de documentos · {brand}</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="publica">
+    <header class="publica-cabeza">
+      <div class="marca" data-brand></div>
+      <div class="muted" style="font-size:13px">Verificación de documentos del establecimiento</div>
+    </header>
+
+    <div id="cargando" class="tarjeta seccion muted" style="text-align:center">Consultando…</div>
+
+    <div id="no-encontrado" class="tarjeta seccion" hidden style="text-align:center">
+      <h1 style="font-size:20px">Código no válido</h1>
+      <p class="muted">Este QR no corresponde a ningún establecimiento activo. Pida al responsable que lo verifique.</p>
+    </div>
+
+    <div id="resultado" hidden>
+      <div class="tarjeta negocio-publico">
+        <h1 id="nombre"></h1>
+        <div class="muted" id="actividad"></div>
+        <div class="muted" id="direccion"></div>
+      </div>
+      <div id="banner" class="banner" style="margin-top:16px"></div>
+      <ul id="documentos" class="tarjeta docs-publicos" style="margin-top:16px"></ul>
+    </div>
+
+    <p class="pie" id="pie"></p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/negocio.js"></script>
+</body>
+</html>
