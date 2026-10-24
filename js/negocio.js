@@ -79,5 +79,5 @@ function pintar(negocio) {
   }
   document.getElementById('cargando').hidden = true;
   const ahora = new Date().toLocaleString('es-CO', { dateStyle: 'long', timeStyle: 'short' });
-  pie.textContent = `Consultado el ${ahora}. Esta página muestra el registro de ${CONFIG.BRAND} y no reemplaza los documentos originales.`;
+  pie.textContent = `Consultado el ${ahora} · Esta página muestra el registro de ${CONFIG.BRAND} y no reemplaza los documentos originales.`;
 })();
