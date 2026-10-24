@@ -2,6 +2,8 @@
 
 Plataforma para tener al día los documentos de los negocios (matrícula mercantil, bomberos, concepto sanitario, uso del suelo, etc.). Cada negocio recibe un **QR**: cuando llega la alcaldía, lo escanea y ve qué documentos están vigentes, por vencer o vencidos.
 
+En vivo: https://gestion-documentos-qr.netlify.app (Netlify publica solo cada push a `main`).
+
 ## Páginas
 
 | Página | Para quién | Qué hace |
