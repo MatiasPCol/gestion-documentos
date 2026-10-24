@@ -43,7 +43,8 @@ language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.admins where user_id = auth.uid());
 $$;
 
-revoke all on function public.es_admin() from public;
+-- Supabase da EXECUTE a anon por defecto: se quita porque es_admin solo sirve con sesión iniciada.
+revoke all on function public.es_admin() from public, anon;
 grant execute on function public.es_admin() to authenticated;
 
 create function public.tocar_actualizado() returns trigger
@@ -53,6 +54,8 @@ begin
   return new;
 end;
 $$;
+
+revoke all on function public.tocar_actualizado() from public, anon, authenticated;
 
 create trigger documentos_actualizado
   before update on public.documentos
@@ -72,6 +75,7 @@ create policy "admins manejan documentos" on public.documentos
   for all to authenticated using (public.es_admin()) with check (public.es_admin());
 
 -- Lo que ve quien escanea el QR: solo datos públicos del negocio y fechas de sus documentos.
+-- Es security definer y anon puede ejecutarla a propósito (el aviso del linter es esperado).
 create function public.estado_negocio(p_codigo text) returns json
 language sql stable security definer set search_path = public as $$
   select json_build_object(
