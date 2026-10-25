@@ -25,6 +25,12 @@ En vivo: https://gestion-documentos-qr.netlify.app (Netlify publica solo cada pu
 2. Poner la URL y la llave pública del proyecto en `js/config.js`. `BRAND` es el nombre que ven los clientes.
 3. Crear el usuario administrador en Supabase (Authentication → Users → Add user) y darle permiso:
    `insert into admins (user_id) select id from auth.users where email = 'correo@ejemplo.com';`
+4. Avisos por correo: ejecutar `supabase/avisos.sql`, crear una cuenta en [Resend](https://resend.com) con el mismo correo del administrador y guardar su llave en Vault:
+   `select vault.create_secret('re_TU_LLAVE', 'resend_api_key');`
+
+## Avisos por correo
+
+Todos los días a las 7:00 a. m. (hora de Colombia), `pg_cron` ejecuta `enviar_avisos()`. Esta función manda un correo a los administradores cuando un documento está a 30, 15, 7, 3 o 1 día de vencer, el día que vence y el día siguiente. Los lunes manda el resumen de todo lo pendiente. El botón **Enviar correo de prueba** del panel manda el resumen al instante.
 
 ## Tecnología
 

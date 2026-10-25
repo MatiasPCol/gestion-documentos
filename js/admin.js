@@ -273,6 +273,13 @@ $('#alertas').addEventListener('click', (e) => {
   abrirNegocio(enlace.dataset.abrir);
 });
 
+$('#probar-avisos').addEventListener('click', async (e) => {
+  e.target.disabled = true;
+  const { data, error } = await db.rpc('probar_avisos');
+  e.target.disabled = false;
+  alert(error ? `No se pudo enviar: ${error.message}` : data);
+});
+
 $('#imprimir-qr').addEventListener('click', () => {
   const copia = $('#tarjeta-qr').cloneNode(true);
   copia.removeAttribute('id');
