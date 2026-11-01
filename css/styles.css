@@ -167,6 +167,19 @@ dialog form { padding: 22px; display: grid; gap: 12px; }
 .docs-publicos strong { display: block; }
 .docs-publicos span.muted { font-size: 13px; }
 .pie { font-size: 12px; color: var(--muted); text-align: center; }
+.simulacion { border-style: dashed; }
+.simulacion td input[type="date"] { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); max-width: 100%; }
+.simulacion td label { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.sim-agregar { display: grid; grid-template-columns: 1fr 160px auto; gap: 10px; align-items: end; }
+.sim-atajos { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 560px) {
+  .sim-agregar { grid-template-columns: 1fr; }
+  .simulacion table, .simulacion tbody { display: block; }
+  .simulacion tr { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .simulacion td { border: 0; padding: 0; min-width: 0; }
+  .simulacion td:first-child { grid-column: 1 / -1; }
+  .simulacion td input[type="date"] { width: 100%; }
+}
 
 .zona-impresion { display: none; }
 

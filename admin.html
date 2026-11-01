@@ -94,17 +94,17 @@
   <dialog id="dialogo-negocio">
     <form method="dialog" id="form-negocio">
       <h2 style="font-size:18px" id="titulo-negocio">Nuevo negocio</h2>
-      <label class="campo">Nombre del negocio *<input name="nombre" required></label>
+      <label class="campo">Nombre del negocio *<input name="nombre" required minlength="2" maxlength="120"></label>
       <div class="fila">
-        <label class="campo">NIT<input name="nit"></label>
-        <label class="campo">Actividad<input name="actividad" placeholder="Ej: Restaurante"></label>
+        <label class="campo">NIT<input name="nit" maxlength="20" inputmode="numeric" placeholder="900.123.456-7"></label>
+        <label class="campo">Actividad<input name="actividad" maxlength="80" placeholder="Ej: Restaurante"></label>
       </div>
-      <label class="campo">Dirección<input name="direccion"></label>
+      <label class="campo">Dirección<input name="direccion" maxlength="150"></label>
       <div class="fila">
-        <label class="campo">Propietario<input name="propietario"></label>
-        <label class="campo">WhatsApp<input name="telefono" inputmode="tel" placeholder="3001234567"></label>
+        <label class="campo">Propietario<input name="propietario" maxlength="100"></label>
+        <label class="campo">WhatsApp<input name="telefono" inputmode="tel" maxlength="20" placeholder="3001234567"></label>
       </div>
-      <label class="campo">Correo<input name="email" type="email"></label>
+      <label class="campo">Correo<input name="email" type="email" maxlength="120"></label>
       <p class="error" id="error-negocio"></p>
       <div class="botones">
         <button class="boton" value="cancelar" formnovalidate>Cancelar</button>
@@ -116,7 +116,7 @@
   <dialog id="dialogo-documento">
     <form method="dialog" id="form-documento">
       <h2 style="font-size:18px" id="titulo-documento">Agregar documento</h2>
-      <label class="campo">Tipo de documento *<input name="tipo" list="tipos" required></label>
+      <label class="campo">Tipo de documento *<input name="tipo" list="tipos" required minlength="2" maxlength="100"></label>
       <datalist id="tipos">
         <option value="Matrícula mercantil (Cámara de Comercio)">
         <option value="RUT">
@@ -127,15 +127,15 @@
         <option value="Registro sanitario INVIMA">
         <option value="Certificado de manipulación de alimentos">
       </datalist>
-      <label class="campo">Número o radicado<input name="numero"></label>
+      <label class="campo">Número o radicado<input name="numero" maxlength="50"></label>
       <div class="fila">
-        <label class="campo">Fecha de expedición<input name="fecha_expedicion" type="date"></label>
-        <label class="campo">Fecha de vencimiento<input name="fecha_vencimiento" type="date"></label>
+        <label class="campo">Fecha de expedición<input name="fecha_expedicion" type="date" min="1950-01-01" max="2100-12-31"></label>
+        <label class="campo">Fecha de vencimiento<input name="fecha_vencimiento" type="date" min="1950-01-01" max="2100-12-31"></label>
       </div>
       <p class="muted" style="margin:-4px 0 0;font-size:12px">Deja el vencimiento vacío si el documento no vence. Para renovarlo, cambia la fecha de vencimiento.</p>
-      <label class="campo">Archivo (PDF o foto)<input name="archivo" type="file" accept=".pdf,image/*"></label>
+      <label class="campo">Archivo (PDF o foto, máx. 10 MB)<input name="archivo" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,application/pdf,image/jpeg,image/png,image/webp,image/heic"></label>
       <p class="muted" id="archivo-actual" style="margin:-6px 0 0;font-size:12px"></p>
-      <label class="campo">Notas<textarea name="notas" rows="2"></textarea></label>
+      <label class="campo">Notas<textarea name="notas" rows="2" maxlength="500"></textarea></label>
       <p class="error" id="error-documento"></p>
       <div class="botones">
         <button class="boton" value="cancelar" formnovalidate>Cancelar</button>

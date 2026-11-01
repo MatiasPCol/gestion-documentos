@@ -166,7 +166,12 @@ $('#form-negocio').addEventListener('submit', async (e) => {
   if (e.submitter?.value !== 'guardar') return;
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(e.target));
-  Object.keys(datos).forEach((k) => { datos[k] = datos[k].trim() || null; });
+  Object.keys(datos).forEach((k) => { datos[k] = limpiarTexto(datos[k]); });
+  if (datos.email) datos.email = datos.email.toLowerCase();
+  if (datos.telefono) datos.telefono = soloDigitos(datos.telefono);
+  const invalido = validarNegocio(datos);
+  if (invalido) return ($('#error-negocio').textContent = invalido);
+  $('#error-negocio').textContent = '';
   $('#guardar-negocio').disabled = true;
   const consulta = editandoNegocio
     ? db.from('negocios').update(datos).eq('id', editandoNegocio.id).select().single()
@@ -209,13 +214,17 @@ $('#form-documento').addEventListener('submit', async (e) => {
   const form = e.target;
   const n = negocioActual();
   const datos = {};
-  ['tipo', 'numero', 'fecha_expedicion', 'fecha_vencimiento', 'notas'].forEach((k) => { datos[k] = form.elements[k].value.trim() || null; });
+  ['tipo', 'numero', 'fecha_expedicion', 'fecha_vencimiento'].forEach((k) => { datos[k] = limpiarTexto(form.elements[k].value); });
+  datos.notas = limpiarTexto(form.elements.notas.value, true);
+  const archivo = form.elements.archivo.files[0];
+  const invalido = validarDocumento(datos, archivo);
+  if (invalido) return ($('#error-documento').textContent = invalido);
+  $('#error-documento').textContent = '';
   $('#guardar-documento').disabled = true;
 
-  const archivo = form.elements.archivo.files[0];
   let archivoAnterior = null;
   if (archivo) {
-    const limpio = archivo.name.normalize('NFD').replace(/[^\w.-]+/g, '_');
+    const limpio = archivo.name.normalize('NFD').replace(/[^\w.-]+/g, '_').slice(-80);
     const ruta = `${n.id}/${crypto.randomUUID()}-${limpio}`;
     const { error } = await db.storage.from('documentos').upload(ruta, archivo);
     if (error) {

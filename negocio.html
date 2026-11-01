@@ -31,6 +31,31 @@
       <ul id="documentos" class="tarjeta docs-publicos" style="margin-top:16px"></ul>
     </div>
 
+    <!-- Solo en la demo: el visitante cambia fechas y agrega documentos para ver cómo reacciona la página. -->
+    <section id="simulacion" class="tarjeta seccion simulacion" hidden>
+      <div>
+        <h2 style="font-size:17px">Prueba la plataforma</h2>
+        <p class="muted" style="margin:4px 0 0;font-size:13px">Esto es un ejemplo. Cambia las fechas o agrega un documento y mira cómo cambia lo que ve la alcaldía al escanear el QR. Nada se guarda.</p>
+      </div>
+      <div class="tabla-envoltura"><table id="sim-documentos"></table></div>
+      <form id="sim-agregar" class="sim-agregar">
+        <label class="campo">Documento<input name="tipo" list="sim-tipos" required minlength="2" maxlength="100" placeholder="Ej: Registro INVIMA"></label>
+        <datalist id="sim-tipos">
+          <option value="Registro sanitario INVIMA">
+          <option value="Certificado de manipulación de alimentos">
+          <option value="Licencia de funcionamiento">
+        </datalist>
+        <label class="campo">Vence<input name="fecha_vencimiento" type="date" min="1950-01-01" max="2100-12-31"></label>
+        <button class="boton principal" type="submit">Agregar</button>
+      </form>
+      <p class="error" id="sim-error"></p>
+      <div class="sim-atajos">
+        <button class="boton chico" type="button" data-sim="al-dia">Poner todo al día</button>
+        <button class="boton chico" type="button" data-sim="vencer">Vencer uno</button>
+        <button class="boton chico" type="button" data-sim="reiniciar">Volver al ejemplo</button>
+      </div>
+    </section>
+
     <p class="pie" id="pie"></p>
   </main>
 
