@@ -2,7 +2,9 @@
 
 Plataforma para tener al día los documentos de los negocios (matrícula mercantil, bomberos, concepto sanitario, uso del suelo, etc.). Cada negocio recibe un **QR**: cuando llega la alcaldía, lo escanea y ve qué documentos están vigentes, por vencer o vencidos.
 
-En vivo: https://gestion-documentos-qr.netlify.app (Netlify publica solo cada push a `main`).
+En vivo: https://gestion-documentos-qr.vercel.app (Vercel publica solo cada push a `main`).
+
+La dirección vieja (gestion-documentos-qr.netlify.app) redirige a la nueva con `_redirects`, para que sigan sirviendo los QR ya impresos. Ese sitio de Netlify no se debe borrar mientras haya QR viejos pegados en los negocios.
 
 ## Páginas
 
@@ -34,7 +36,7 @@ Todos los días a las 7:00 a. m. (hora de Colombia), `pg_cron` ejecuta `enviar_a
 
 ## Tecnología
 
-HTML, CSS y JavaScript sin compilación, [Supabase](https://supabase.com) (base de datos, login y archivos) y Netlify. Los permisos se controlan con Row Level Security: solo los administradores ven y editan datos, y el público solo puede consultar el estado mediante la función `estado_negocio`.
+HTML, CSS y JavaScript sin compilación, [Supabase](https://supabase.com) (base de datos, login y archivos) y Vercel. Los permisos se controlan con Row Level Security: solo los administradores ven y editan datos, y el público solo puede consultar el estado mediante la función `estado_negocio`.
 
 ## Validación de datos
 

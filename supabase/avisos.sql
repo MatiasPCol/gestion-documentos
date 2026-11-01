@@ -18,7 +18,7 @@ create function public.enviar_avisos(p_prueba boolean default false) returns tex
 language plpgsql security definer set search_path = public as $$
 declare
   v_marca constant text := 'Gestión de Documentos';
-  v_panel constant text := 'https://gestion-documentos-qr.netlify.app/admin.html';
+  v_panel constant text := 'https://gestion-documentos-qr.vercel.app/admin.html';
   v_hoy date := (now() at time zone 'America/Bogota')::date;
   v_lunes boolean := extract(isodow from v_hoy) = 1;
   v_llave text;
